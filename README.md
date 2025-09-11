@@ -6,7 +6,7 @@ This library is currently in beta and is not recommended for production environm
 
 ## Getting Started
 
-Add a reference to the NuGet package in your application:
+Add a reference to the [NuGet package](https://www.nuget.org/packages/AutotaskNet) in your application:
 ```pwsh
 Install-Package AutotaskNet
 ```
