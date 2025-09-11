@@ -26,6 +26,8 @@ builder.Services.AddAutotask(credentials =>
 });
 ```
 
+If you have not yet set up your Autotask API User, refer to their [documentation](https://autotask.net/help/DeveloperHelp/Content/APIs/REST/General_Topics/REST_Security_Auth.htm) to get started.
+
 Finally, inject the `IAutotaskService` to your class.
 
 ## Usage Examples
