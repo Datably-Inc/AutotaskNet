@@ -10,7 +10,7 @@
         <PackageId>AutotaskNet</PackageId>
         <Version>1.0.0-alpha</Version>
         <Authors>Calvin Agar</Authors>
-        <Description>A C# library that assists in reading from and writing to the Autotask REST API.</Description>
+        <Description>A .NET Standard library that assists in reading from and writing to the Autotask REST API.</Description>
         <Copyright>Copyright (c) 2025 Datably, Inc.</Copyright>
         <PackageProjectUrl>https://github.com/Datably-Inc/AutotaskNet/wiki</PackageProjectUrl>
         <PackageIcon>autotask_icon.png</PackageIcon>
