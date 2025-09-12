@@ -18,11 +18,13 @@ dotnet add package AutotaskNet
 Register the library in the dependency injection container:
 
 ```c#
-builder.Services.AddAutotask(credentials =>
+using AutotaskNet.Api;
+
+builder.Services.AddAutotask(new AutotaskCredentials
 {
-    credentials.ApiIntegrationCode = "";
-    credentials.UserName = "";
-    credentials.Secret = "";
+    ApiIntegrationCode = "asdf",
+    UserName = "asdf",
+    Secret = "asdf"
 });
 ```
 

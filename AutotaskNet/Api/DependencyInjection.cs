@@ -9,15 +9,10 @@ public static class DependencyInjection
     /// <summary>
     /// Registers the dependencies for the AutotaskNet library.
     /// </summary>
-    public static void AddAutotask(this IServiceCollection services, Action<AutotaskCredentials> credentialsAction)
+    public static void AddAutotask(this IServiceCollection services, AutotaskCredentials credentials)
     {
-        services.AddSingleton<AutotaskCredentials>(_ =>
-        {
-            var credentials = new AutotaskCredentials();
-            credentialsAction(credentials);
-            credentials.AssertValidState();
-            return credentials;
-        });
+        credentials.AssertValidState();
+        services.AddSingleton(credentials);
 
         services.AddScoped<IProxy, IProxy.Imp>();
         services.AddScoped<IAutotaskProxy, IAutotaskProxy.Imp>();
