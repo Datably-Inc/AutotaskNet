@@ -16,17 +16,17 @@ public interface IAutotaskNet
     /// <summary>
     /// Creates a root entity.
     /// </summary>
-    Task<ItemIdResult> CreateAsync<T>(T rootEntity) where T : AutotaskRootEntity;
+    Task<long> CreateAsync<T>(T rootEntity) where T : AutotaskRootEntity;
 
     /// <summary>
     /// Updates a root entity.
     /// </summary>
-    Task<ItemIdResult> UpdateAsync<T>(T rootEntity) where T : AutotaskRootEntity;
+    Task<long> UpdateAsync<T>(T rootEntity) where T : AutotaskRootEntity;
 
     /// <summary>
     /// Deletes a root entity.
     /// </summary>
-    Task<ItemIdResult> DeleteAsync<T>(long rootEntityId) where T : AutotaskRootEntity;
+    Task<long> DeleteAsync<T>(long rootEntityId) where T : AutotaskRootEntity;
 
     /// <summary>
     /// Returns all root entities that match the filter.
@@ -53,17 +53,17 @@ public interface IAutotaskNet
     /// <summary>
     /// Retrieves information about a root entity.
     /// </summary>
-    Task<EntityInformationResult> GetEntityInformationAsync<T>() where T : AutotaskRootEntity;
+    Task<EntityInformation> GetEntityInformationAsync<T>() where T : AutotaskRootEntity;
 
     /// <summary>
     /// Retrieves information about a root entity's fields.
     /// </summary>
-    Task<EntityFieldsResult> GetEntityFieldsAsync<T>() where T : AutotaskRootEntity;
+    Task<List<EntityField>> GetEntityFieldsAsync<T>() where T : AutotaskRootEntity;
 
     /// <summary>
     /// Retrieves information about a root entity's user defined fields.
     /// </summary>
-    Task<EntityUserDefinedFieldsResult> GetEntityUserDefinedFieldsAsync<T>() where T : AutotaskRootEntity;
+    Task<List<EntityUserDefinedField>> GetEntityUserDefinedFieldsAsync<T>() where T : AutotaskRootEntity;
 
     #endregion
 
@@ -72,17 +72,17 @@ public interface IAutotaskNet
     /// <summary>
     /// Creates a child entity.
     /// </summary>
-    Task<ItemIdResult> CreateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity;
+    Task<long> CreateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity;
 
     /// <summary>
     /// Updates a child entity.
     /// </summary>
-    Task<ItemIdResult> UpdateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity;
+    Task<long> UpdateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity;
 
     /// <summary>
     /// Deletes a child entity.
     /// </summary>
-    Task<ItemIdResult> DeleteAsync<T>(long parentId, long childId) where T : AutotaskChildEntity;
+    Task<long> DeleteAsync<T>(long parentId, long childId) where T : AutotaskChildEntity;
 
     /// <summary>
     /// Returns all child entities for the parent.
@@ -99,17 +99,17 @@ public interface IAutotaskNet
     /// <summary>
     /// Retrieves information about a child entity.
     /// </summary>
-    Task<EntityInformationResult> GetEntityInformationAsync<T>(long parentId) where T : AutotaskChildEntity;
+    Task<EntityInformation> GetEntityInformationAsync<T>(long parentId) where T : AutotaskChildEntity;
 
     /// <summary>
     /// Retrieves information about a child entity's fields.
     /// </summary>
-    Task<EntityFieldsResult> GetEntityFieldsAsync<T>(long parentId) where T : AutotaskChildEntity;
+    Task<List<EntityField>> GetEntityFieldsAsync<T>(long parentId) where T : AutotaskChildEntity;
 
     /// <summary>
     /// Retrieves information about a child entity's user defined fields.
     /// </summary>
-    Task<EntityUserDefinedFieldsResult> GetEntityUserDefinedFieldsAsync<T>(long parentId) where T : AutotaskChildEntity;
+    Task<List<EntityUserDefinedField>> GetEntityUserDefinedFieldsAsync<T>(long parentId) where T : AutotaskChildEntity;
 
     #endregion
 

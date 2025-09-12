@@ -20,28 +20,31 @@ internal class AutotaskNet : IAutotaskNet
 
     #region Root Entity Endpoints
 
-    public Task<ItemIdResult> CreateAsync<T>(T rootEntity) where T : AutotaskRootEntity
+    public async Task<long> CreateAsync<T>(T rootEntity) where T : AutotaskRootEntity
     {
         rootEntity.AssertValidStateAndOperation(AutotaskOperation.Create);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.CreateAsync(endpoint, rootEntity);
+        var result = await _autotaskProxy.CreateAsync(endpoint, rootEntity);
+        return result.ItemId.GetInt64();
     }
 
-    public Task<ItemIdResult> UpdateAsync<T>(T rootEntity) where T : AutotaskRootEntity
+    public async Task<long> UpdateAsync<T>(T rootEntity) where T : AutotaskRootEntity
     {
         rootEntity.AssertValidStateAndOperation(AutotaskOperation.Update);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.UpdateAsync(endpoint, rootEntity);
+        var result = await _autotaskProxy.UpdateAsync(endpoint, rootEntity);
+        return result.ItemId.GetInt64();
     }
 
-    public Task<ItemIdResult> DeleteAsync<T>(long rootEntityId) where T : AutotaskRootEntity
+    public async Task<long> DeleteAsync<T>(long rootEntityId) where T : AutotaskRootEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.Delete);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.DeleteAsync<T>(endpoint, rootEntityId);
+        var result = await _autotaskProxy.DeleteAsync<T>(endpoint, rootEntityId);
+        return result.ItemId.GetInt64();
     }
 
     public Task<IEnumerable<T>> QueryAsync<T>(QueryFilter filter, int pageCount = int.MaxValue)
@@ -80,56 +83,64 @@ internal class AutotaskNet : IAutotaskNet
         return result.FirstOrDefault();
     }
 
-    public Task<EntityInformationResult> GetEntityInformationAsync<T>() where T : AutotaskRootEntity
+    public async Task<EntityInformation> GetEntityInformationAsync<T>() where T : AutotaskRootEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.GetEntityInformationAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityInformationAsync<T>(endpoint);
+        return result.Info;
     }
 
-    public Task<EntityFieldsResult> GetEntityFieldsAsync<T>() where T : AutotaskRootEntity
+    public async Task<List<EntityField>> GetEntityFieldsAsync<T>() where T : AutotaskRootEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.GetEntityFieldsAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityFieldsAsync<T>(endpoint);
+        return result.Fields;
     }
 
-    public Task<EntityUserDefinedFieldsResult> GetEntityUserDefinedFieldsAsync<T>() where T : AutotaskRootEntity
+    public async Task<List<EntityUserDefinedField>> GetEntityUserDefinedFieldsAsync<T>() where T : AutotaskRootEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetEndpoint<T>();
-        return _autotaskProxy.GetEntityUserDefinedFieldsAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityUserDefinedFieldsAsync<T>(endpoint);
+        return result.Fields;
     }
 
     #endregion
 
     #region Child Entity Endpoints
 
-    public Task<ItemIdResult> CreateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity
+    public async Task<long> CreateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity
     {
         childEntity.AssertValidStateAndOperation(AutotaskOperation.Create);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.CreateAsync(endpoint, childEntity);
+        var result = await _autotaskProxy.CreateAsync(endpoint, childEntity);
+        return result.ItemId.GetInt64();
     }
 
-    public Task<ItemIdResult> UpdateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity
+    public async Task<long> UpdateAsync<T>(long parentId, T childEntity) where T : AutotaskChildEntity
     {
         childEntity.AssertValidStateAndOperation(AutotaskOperation.Update);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.UpdateAsync(endpoint, childEntity);
+        var result = await _autotaskProxy.UpdateAsync(endpoint, childEntity);
+        return result.ItemId.GetInt64();
+
     }
 
-    public Task<ItemIdResult> DeleteAsync<T>(long parentId, long childId) where T : AutotaskChildEntity
+    public async Task<long> DeleteAsync<T>(long parentId, long childId) where T : AutotaskChildEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.Delete);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.DeleteAsync<T>(endpoint, childId);
+        var result = await _autotaskProxy.DeleteAsync<T>(endpoint, childId);
+        return result.ItemId.GetInt64();
+
     }
 
     public Task<IEnumerable<T>> QueryAsync<T>(long parentId, int pageCount = int.MaxValue) where T : AutotaskChildEntity
@@ -148,29 +159,33 @@ internal class AutotaskNet : IAutotaskNet
         return _autotaskProxy.GetAsync<T>(endpoint, childId);
     }
 
-    public Task<EntityInformationResult> GetEntityInformationAsync<T>(long parentId) where T : AutotaskChildEntity
+    public async Task<EntityInformation> GetEntityInformationAsync<T>(long parentId) where T : AutotaskChildEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.GetEntityInformationAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityInformationAsync<T>(endpoint);
+        return result.Info;
     }
 
-    public Task<EntityFieldsResult> GetEntityFieldsAsync<T>(long parentId) where T : AutotaskChildEntity
+    public async Task<List<EntityField>> GetEntityFieldsAsync<T>(long parentId) where T : AutotaskChildEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.GetEntityFieldsAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityFieldsAsync<T>(endpoint);
+        return result.Fields;
+
     }
 
-    public Task<EntityUserDefinedFieldsResult> GetEntityUserDefinedFieldsAsync<T>(long parentId)
+    public async Task<List<EntityUserDefinedField>> GetEntityUserDefinedFieldsAsync<T>(long parentId)
         where T : AutotaskChildEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);
 
         var endpoint = AutotaskEndpoints.GetChildEndpoint<T>(parentId);
-        return _autotaskProxy.GetEntityUserDefinedFieldsAsync<T>(endpoint);
+        var result = await _autotaskProxy.GetEntityUserDefinedFieldsAsync<T>(endpoint);
+        return result.Fields;
     }
 
     #endregion
