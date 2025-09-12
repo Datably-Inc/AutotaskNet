@@ -71,6 +71,15 @@ internal class AutotaskNet : IAutotaskNet
         return _autotaskProxy.GetAsync<T>(endpoint, rootEntityId);
     }
 
+    public async Task<T?> GetAsync<T>(QueryFilter filter) where T : AutotaskRootEntity
+    {
+        AssertGenericOperation<T>(AutotaskOperation.Query);
+
+        var endpoint = AutotaskEndpoints.GetEndpoint<T>();
+        var result = await _autotaskProxy.QueryAsync<T>(endpoint, filter, 1);
+        return result.FirstOrDefault();
+    }
+
     public Task<EntityInformationResult> GetEntityInformationAsync<T>() where T : AutotaskRootEntity
     {
         AssertGenericOperation<T>(AutotaskOperation.GetEntityInformation);

@@ -46,6 +46,11 @@ public interface IAutotaskNet
     Task<T> GetAsync<T>(long rootEntityId) where T : AutotaskRootEntity;
 
     /// <summary>
+    /// Returns the first root entity that matches the filter.
+    /// </summary>
+    Task<T?> GetAsync<T>(QueryFilter filter) where T : AutotaskRootEntity;
+
+    /// <summary>
     /// Retrieves information about a root entity.
     /// </summary>
     Task<EntityInformationResult> GetEntityInformationAsync<T>() where T : AutotaskRootEntity;
