@@ -2,7 +2,7 @@
 
 internal class PaginatedResult<T>
 {
-    public IEnumerable<T> Items { get; set; }
+    public List<T> Items { get; set; }
     public PagingModel PageDetails { get; set; }
 
     public record PagingModel

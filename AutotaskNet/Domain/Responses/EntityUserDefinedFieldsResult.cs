@@ -4,7 +4,7 @@ namespace AutotaskNet.Domain.Responses;
 
 public class EntityUserDefinedFieldsResult
 {
-    public IEnumerable<EntityUserDefinedField> Fields { get; set; }
+    public List<EntityUserDefinedField> Fields { get; set; }
 
     public class EntityUserDefinedField
     {

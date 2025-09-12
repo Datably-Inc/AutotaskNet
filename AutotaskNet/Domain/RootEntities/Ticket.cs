@@ -92,5 +92,5 @@ public class Ticket : AutotaskRootEntity
     [MaxLength(250)] public required string Title { get; set; }
 
     [MaxLength(300)]
-    public IEnumerable<UserDefinedField> UserDefinedFields { get; set; } = new List<UserDefinedField>();
+    public List<UserDefinedField> UserDefinedFields { get; set; } = new();
 }

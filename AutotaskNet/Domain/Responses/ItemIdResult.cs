@@ -1,6 +1,8 @@
-﻿namespace AutotaskNet.Domain.Responses;
+﻿using System.Text.Json;
+
+namespace AutotaskNet.Domain.Responses;
 
 public class ItemIdResult
 {
-    public object ItemId { get; set; }
+    public JsonElement ItemId { get; set; }
 }

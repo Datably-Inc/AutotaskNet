@@ -4,7 +4,7 @@ namespace AutotaskNet.Domain.Responses;
 
 public class EntityFieldsResult
 {
-    public IEnumerable<EntityField> Fields { get; set; }
+    public List<EntityField> Fields { get; set; }
 
     public class EntityField
     {

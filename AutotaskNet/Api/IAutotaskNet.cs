@@ -7,7 +7,7 @@ using AutotaskNet.Domain.RootEntities;
 namespace AutotaskNet.Api;
 
 /// <summary>
-/// The service used to communicate with the Autotask REST API.
+/// Abstracts the Autotask REST API.
 /// </summary>
 public interface IAutotaskNet
 {

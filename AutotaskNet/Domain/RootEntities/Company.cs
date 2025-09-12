@@ -76,5 +76,5 @@ public class Company : AutotaskRootEntity
     [MaxLength(255)] public string WebAddress { get; set; }
 
     [MaxLength(200)]
-    public IEnumerable<UserDefinedField> UserDefinedFields { get; set; } = new List<UserDefinedField>();
+    public List<UserDefinedField> UserDefinedFields { get; set; } = new();
 }
