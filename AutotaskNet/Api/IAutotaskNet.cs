@@ -97,6 +97,11 @@ public interface IAutotaskNet
     Task<T> GetAsync<T>(long parentId, long childId) where T : AutotaskChildEntity;
 
     /// <summary>
+    /// Returns the first child entity that matches the predicate.
+    /// </summary>
+    Task<T?> GetAsync<T>(long parentId, Func<T, bool> predicate) where T : AutotaskChildEntity;
+
+    /// <summary>
     /// Retrieves information about a child entity.
     /// </summary>
     Task<EntityInformation> GetEntityInformationAsync<T>(long parentId) where T : AutotaskChildEntity;
