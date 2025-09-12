@@ -30,8 +30,8 @@ public class Ticket : AutotaskRootEntity
     [MaxLength(8000)] public string ChangeInfoField5 { get; set; }
     public required int CompanyID { get; set; }
     public int? CompanyLocationID { get; set; }
-    public int CompletedByResourceID { get; set; }
-    public DateTime CompletedDate { get; set; }
+    public int? CompletedByResourceID { get; set; }
+    public DateTime? CompletedDate { get; set; }
     public int? ConfigurationItemID { get; set; }
     public int? ContactID { get; set; }
     public int? ContractID { get; set; }
@@ -72,9 +72,9 @@ public class Ticket : AutotaskRootEntity
     [MaxLength(50)] public string PurchaseOrderNumber { get; set; }
     public int? QueueID { get; set; }
     [MaxLength(32000)] public string Resolution { get; set; }
-    public DateTime ResolutionPlanDateTime { get; set; }
+    public DateTime? ResolutionPlanDateTime { get; set; }
     public DateTime? ResolutionPlanDueDateTime { get; set; }
-    public DateTime ResolvedDateTime { get; set; }
+    public DateTime? ResolvedDateTime { get; set; }
     public DateTime? ResolvedDueDateTime { get; set; }
     public int? RmaStatus { get; set; }
     public int? RmaType { get; set; }
@@ -92,5 +92,5 @@ public class Ticket : AutotaskRootEntity
     [MaxLength(250)] public required string Title { get; set; }
 
     [MaxLength(300)]
-    public List<UserDefinedField> UserDefinedFields { get; set; } = new();
+    public IEnumerable<UserDefinedField> UserDefinedFields { get; set; } = new List<UserDefinedField>();
 }
