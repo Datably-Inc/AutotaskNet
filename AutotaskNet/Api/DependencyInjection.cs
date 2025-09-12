@@ -16,6 +16,6 @@ public static class DependencyInjection
 
         services.AddScoped<IProxy, IProxy.Imp>();
         services.AddScoped<IAutotaskProxy, IAutotaskProxy.Imp>();
-        services.AddScoped<IAutotaskService, AutotaskService>();
+        services.AddScoped<IAutotaskNet, Implementation.AutotaskNet>();
     }
 }
