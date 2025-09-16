@@ -3,7 +3,7 @@ using AutotaskNet.Implementation;
 
 namespace AutotaskNet.Api;
 
-public class TestExtensions
+public class AutotaskNetTestHelper
 {
     /// <summary>
     /// Creates an instance of IAutotaskNet for use in integration testing.

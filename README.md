@@ -37,7 +37,7 @@ Finally, inject the `IAutotaskNet` interface as a dependency.
 ### Creating Entities
 
 ```c#
-IAutotaskService service;
+IAutotaskNet service;
 
 // Root entity
 var ticket = new Ticket { ... };
@@ -112,3 +112,20 @@ EntityInformationResult entityInformation = await service.GetEntityInformationAs
 EntityFieldsResult entityFields = await service.GetEntityFieldsAsync<TicketNote>(ticket.Id);
 EntityUserDefinedFieldsResult entityUserDefinedFields = await service.GetEntityUserDefinedFieldsAsync<TicketNote>(ticket.Id);
 ```
+
+### Integration Testing
+
+The dependency injection container may not always be available. This is especially the case when writing integration tests without the proper boilerplate for your application's testing framework already set up.
+
+To make this process easier, we have a helper method you can use to create an instance of the `IAutotaskNet` interface:
+
+```c#
+var service = AutotaskNetTestHelper.CreateAutotaskNet(new AutotaskCredentials
+{
+    ApiIntegrationCode = "", 
+    UserName = "",
+    Secret = ""
+});
+```
+
+This method is recommended to only be used in testing. All other uses of `IAutotaskNet` should rely on the dependency injection container.
