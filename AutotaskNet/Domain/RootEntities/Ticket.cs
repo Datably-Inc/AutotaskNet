@@ -31,6 +31,7 @@ public class Ticket : AutotaskRootEntity
     
     /// <summary>Picklist value</summary>
     public int? ChangeApprovalType { get; set; }
+    
     [MaxLength(8000)] public string ChangeInfoField1 { get; set; }
     [MaxLength(8000)] public string ChangeInfoField2 { get; set; }
     [MaxLength(8000)] public string ChangeInfoField3 { get; set; }
@@ -54,6 +55,7 @@ public class Ticket : AutotaskRootEntity
     
     /// <summary>Picklist value</summary>
     public int? CurrentServiceThermometerRating { get; set; }
+    
     [MaxLength(8000)] public string? Description { get; set; }
     public required DateTime DueDateTime { get; set; }
     public double? EstimatedHours { get; set; }

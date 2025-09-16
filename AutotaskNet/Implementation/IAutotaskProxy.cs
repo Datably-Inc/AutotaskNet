@@ -41,7 +41,7 @@ internal interface IAutotaskProxy
         private readonly AutotaskCredentials _credentials;
         private readonly ZoneUriGetter _zoneUriGetter;
 
-        internal Imp(IProxy proxy, AutotaskCredentials credentials)
+        public Imp(IProxy proxy, AutotaskCredentials credentials)
         {
             _proxy = proxy;
             _credentials = credentials;
