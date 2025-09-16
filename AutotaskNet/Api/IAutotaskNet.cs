@@ -9,7 +9,7 @@ namespace AutotaskNet.Api;
 /// <summary>
 /// Abstracts the Autotask REST API.
 /// </summary>
-public interface IAutotaskNet
+public interface IAutotaskNet : IDisposable
 {
     #region Root Entity Endpoints
 

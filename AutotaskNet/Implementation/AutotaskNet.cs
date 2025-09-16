@@ -217,4 +217,6 @@ internal class AutotaskNet : IAutotaskNet
         var instance = (T)Activator.CreateInstance(typeof(T));
         instance.AssertValidOperation(operation);
     }
+
+    public void Dispose() => _autotaskProxy.Dispose();
 }

@@ -37,7 +37,7 @@ Finally, inject the `IAutotaskNet` interface as a dependency.
 ### Creating Entities
 
 ```c#
-IAutotaskNet service;
+using IAutotaskNet service;
 
 // Root entity
 var ticket = new Ticket { ... };
@@ -120,7 +120,7 @@ The dependency injection container may not always be available. This is especial
 To make this process easier, we have a helper method you can use to create an instance of the `IAutotaskNet` interface:
 
 ```c#
-var service = AutotaskNetTestHelper.CreateAutotaskNet(new AutotaskCredentials
+using var service = AutotaskNetTestHelper.CreateAutotaskNet(new AutotaskCredentials
 {
     ApiIntegrationCode = "", 
     UserName = "",

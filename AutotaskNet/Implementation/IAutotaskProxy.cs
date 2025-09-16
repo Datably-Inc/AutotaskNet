@@ -10,7 +10,7 @@ using AutotaskNet.Utilities;
 
 namespace AutotaskNet.Implementation;
 
-internal interface IAutotaskProxy
+internal interface IAutotaskProxy : IDisposable
 {
     Task<ItemIdResult> CreateAsync<T>(string endpoint, T entity) where T : AutotaskEntity;
 
@@ -195,6 +195,8 @@ internal interface IAutotaskProxy
 
             return results;
         }
+
+        public void Dispose() => _proxy.Dispose();
     }
 
     public class ZoneUriGetter

@@ -4,7 +4,7 @@ using AutotaskNet.Utilities;
 
 namespace AutotaskNet.Implementation;
 
-internal interface IProxy
+internal interface IProxy : IDisposable
 {
     Task<T> SendAsync<T>(HttpRequestMessage message);
     Task<T> SendAsync<T>(HttpRequestMessage message, object payload);
@@ -65,5 +65,7 @@ internal interface IProxy
                        $"for request: {response.RequestMessage.RequestUri}\n" +
                        $"Autotask response: {content}");
         }
+
+        public void Dispose() => _client.Dispose();
     }
 }
