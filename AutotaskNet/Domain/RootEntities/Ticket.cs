@@ -61,7 +61,7 @@ public class Ticket : AutotaskRootEntity
     public double? EstimatedHours { get; set; }
     [MaxLength(50)] public string ExternalID { get; set; }
     public int? FirstResponseAssignedResourceID { get; set; }
-    public DateTime FirstResponseDateTime { get; set; }
+    public DateTime? FirstResponseDateTime { get; set; }
     public DateTime? FirstResponseDueDateTime { get; set; }
     public int? FirstResponseInitiatingResourceID { get; set; }
     public double? HoursToBeScheduled { get; set; }
